@@ -16,6 +16,9 @@
     - Python はより強力なエラー処理とデバッグ機能を提供し、コードの品質と保守性が向上
     - bash はこれらの機能に関しては限定的
 # ⌨️ (03:24) Basic commands
+- vim
+  - 変更を無視してquitしたい場合
+    - :q!
 # ⌨️ (06:21) Writing your first bash script
 # ⌨️ (11:29) Variables
 # ⌨️ (14:55) Positional arguments
