@@ -86,6 +86,14 @@
 - `${1,,}`
   - 1つ目の位置引数を全て小文字に変換する
 # ⌨️ (32:16) Arrays
+- ex.)
+  - `LIST=(one two three four five)`
+  - `echo $LIST`
+  - `one`のみ出力される
+  - `echo ${LIST[@]}`
+  - `one two three four five`が出力される
+    - `echo $LIST[@]`
+    - `one[@]`が出力される
 # ⌨️ (34:12) For loop
 # ⌨️ (36:03) Functions
 # ⌨️ (41:31) Exit codes
