@@ -248,3 +248,14 @@ since
   - `echo "Just get this word: Hello" | awk -F: '{print $2}'`
   - `Hello`が出力される
 # ⌨️ (45:11) SED
+- 正規表現を使用してファイル内の値を変更できるコマンドラインツール
+  - ex.)
+    - `echo -e "The fly flies like no fly flies\nA fly is an insect that has wings and a fly likes to eat leftovers." > sedtest.txt`
+    - `sed 's/fly/grasshopper/g' sedtest.txt`
+    - `The grasshopper flies like no grasshopper flies\nA grasshopper is an insect that has wings and a grasshopper likes to eat leftovers.`が出力される
+  - ex.)
+    - `sed -i.ORIGINAL 's/fly/grasshopper/g' sedtest.txt`
+      - `-i`
+        - 正規表現に従い，実際にファイルを編集する
+      - `.ORIGINAL`
+        - 編集前のファイルを`sedtest.txt.ORIGINAL`として保存する
