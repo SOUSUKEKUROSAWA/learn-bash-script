@@ -106,6 +106,55 @@
     - `-c`
       - 文字数カウントモード
 # ⌨️ (36:03) Functions
+- `up=$(uptime -p | cut -c4-)`
+  - `uptime -p`
+    - システムのアップタイムを "up X hours, Y minutes" の形式で表示
+  - `cut -c4-`
+    - 先頭の`"up "`を取り除く
+- `since=$(uptime -s)`
+  - `uptime -s`
+    - システムが起動した時刻を表示
+- uptimeを使用するには，WSLを使ってBashスクリプトを実行する必要がある
+- 関数内の変数がグローバル変数になってしまっている問題
+```diff
+# スクリプト
+#!/bin/bash
+
+up="up"
+since="since"
+echo $up
+echo $since
+
+showuptime(){
+-   up=$(uptime -p | cut -c4-)
++   local up=$(uptime -p | cut -c4-)
+-   since=$(uptime -s)
++   local since=$(uptime -s)
+    cat << EOF
+----------
+This machine has been up for ${up}
+It has been running since ${since}
+----------
+EOF
+}
+
+showuptime
+
+echo $up
+echo $since
+
+# 出力
+up
+since
+    ----------
+    This machine has been up for 23 minutes
+    It has been running since 2023-05-13 15:43:19
+    ----------
+- 23 minutes
++ up
+- 2023-05-13 15:43:19
++ since
+```
 # ⌨️ (41:31) Exit codes
 # ⌨️ (42:30) AWK
 # ⌨️ (45:11) SED
