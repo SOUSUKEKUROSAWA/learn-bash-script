@@ -85,7 +85,6 @@
 # ⌨️ (25:19) If/Elif/Else
 - `${1,,}`
   - 1つ目の位置引数を全て小文字に変換する
-# ⌨️ (28:37) Case statements
 # ⌨️ (32:16) Arrays
 # ⌨️ (34:12) For loop
 # ⌨️ (36:03) Functions
