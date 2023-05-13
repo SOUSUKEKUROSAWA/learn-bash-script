@@ -67,6 +67,18 @@
     - ex.)
       - `read -r first_line <<< "EOS \これはヒアドキュメントの例です。\ 複数行にわたるテキストを簡単に扱うことができます。\ EOS" \ echo "最初の行: $first_line"`
 # ⌨️ (23:23) Test operators
+- 式がtrue(=0)かfalse(=1)かを返す
+- ex.)
+  - `[ hello = hello ]`
+    - すべてのスペースが必須
+      - `[]`の間と`=`の間
+    - 比較するものがint型の場合，`=`は`-eq`と記述することも可能
+      - ex.)
+        - `[ 1 -eq 1]`
+  - `echo $?`
+    - $?
+      - 最後に実行されたコマンドを返す
+  - `0`を出力
 # ⌨️ (25:19) If/Elif/Else
 # ⌨️ (28:37) Case statements
 # ⌨️ (32:16) Arrays
