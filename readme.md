@@ -32,8 +32,9 @@
     - スクリプトに実行権限を付与し、直接実行することができます。
       - ex.) ./myscript.sh のように実行することが可能
         - shebangがない場合、スクリプトを実行するには、bash myscript.sh のように、明示的にインタープリタを指定する必要があります。
-# ⌨️ (11:29) Variables
 # ⌨️ (14:55) Positional arguments
+- 位置引数
+  - スペースで区切られる
 # ⌨️ (16:23) Output/Input redirection
 # ⌨️ (23:23) Test operators
 # ⌨️ (25:19) If/Elif/Else
