@@ -36,6 +36,36 @@
 - 位置引数
   - スペースで区切られる
 # ⌨️ (16:23) Output/Input redirection
+- パイピング`|`
+  - 左のコマンドの出力を右のコマンドに転送する
+  - ex.) `ls -l /usr/bin | grep bash`
+    - bashというワードとマッチするものだけ抽出する
+- 出力リダイレクト`>` `>>`
+  - 左のコマンドの出力を右のファイルへ送信する
+    - `>`
+      - 上書き
+    - `>>`
+      - 追加（次の行へ） 
+    - ex.) `echo Hello World > hello.txt`
+- 入力リダイレクト
+  - `<`
+    - 右のファイルを左のコマンドに受け渡す
+  - ex.)
+    - hello.txt
+      - `Hello World Good day to you`
+    - `wc -w hello.txt`
+      - `6 hello.txt`
+    - `wc -w < hello.txt`
+      - `6`
+        - こっちだと数字だけ出力される
+  - `<<`（ヒアドキュメント）
+    - 複数行の文字列を扱える
+    - ex.)
+      - `cat << EOF \ これはヒアドキュメントの例です。\ 複数行にわたるテキストを簡単に扱うことができます。\ EOF`
+  - `<<<`（ヒアストリング）
+    - 単一行の文字列を扱える
+    - ex.)
+      - `read -r first_line <<< "EOS \これはヒアドキュメントの例です。\ 複数行にわたるテキストを簡単に扱うことができます。\ EOS" \ echo "最初の行: $first_line"`
 # ⌨️ (23:23) Test operators
 # ⌨️ (25:19) If/Elif/Else
 # ⌨️ (28:37) Case statements
