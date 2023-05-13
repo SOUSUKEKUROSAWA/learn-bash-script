@@ -58,6 +58,7 @@
       - `Hello World Good day to you`
     - `wc -w hello.txt`
       - `6 hello.txt`
+        - `-w`オプションは単語数カウントモード
     - `wc -w < hello.txt`
       - `6`
         - こっちだと数字だけ出力される
@@ -95,6 +96,15 @@
     - `echo $LIST[@]`
     - `one[@]`が出力される
 # ⌨️ (34:12) For loop
+- `for item in ${LIST[@]}; do echo -n $item | wc -c; done`
+  - `for item in ${LIST[@]}; do ...; done`
+    - 配列`LIST`の各要素に対して繰り返し処理を実行
+  - `echo -n $item`
+    - `-n`
+      - 改行なしで出力
+  - `wc -c`
+    - `-c`
+      - 文字数カウントモード
 # ⌨️ (36:03) Functions
 # ⌨️ (41:31) Exit codes
 # ⌨️ (42:30) AWK
