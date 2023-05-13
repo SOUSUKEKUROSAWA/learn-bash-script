@@ -18,6 +18,79 @@
   - まとめ
     - bashで作れそうなスクリプトはまずbashで作成してみる
     - 作れなさそうだったら，pythonで作る
+  - ex.) pythonとbashで作成した同様の処理を行うスクリプト
+```python
+import os
+import fnmatch
+
+def find_files(filename, search_path='.'):
+    result = []
+    for root, _, files in os.walk(search_path):
+        for name in files:
+            if fnmatch.fnmatch(name, f'*{filename}*'):
+                result.append(os.path.join(root, name))
+    return result
+
+def change_text_into_headline(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.readlines()
+
+    with open(file_path, 'w', encoding='utf-8') as f:
+        for line in content:
+            f.write(f'# {line}')
+
+def main():    
+    file_name = input("検索ワードを入力＞")
+
+    file_paths = find_files(file_name)
+
+    if not file_paths:
+        print("\nファイルが見つかりませんでした")
+        return
+
+    print("\n検索結果")
+    for i, path in enumerate(file_paths):
+        print(f'{i+1}. {path}')
+
+    confirmed_index = int(input("編集するファイルを選択（番号指定）＞")) - 1
+
+    if confirmed_index < 0 or confirmed_index >= len(file_paths):
+        print("\n無効な番号が入力されました．スクリプトを実行し直してください")
+        return
+
+    change_text_into_headline(file_paths[confirmed_index])
+
+if __name__ == '__main__':
+    main()
+```
+```sh
+#!/bin/bash
+
+read -r -p "検索ワードを入力＞" search_word
+
+# ディレクトリ配下を再帰的に検索し，結果を配列に変換して格納
+IFS=$'\n' readarray -t matching_files < <(find . -type f -name "*$search_word*")
+
+if [ ${#matching_files[@]} -eq 0 ]; then
+  echo "ファイルが見つかりませんでした"
+  exit 1
+fi
+
+echo -e "\n検索結果"
+for i in "${!matching_files[@]}"; do
+  echo "$((i+1)). ${matching_files[i]}"
+done
+
+read -r -p "編集するファイルを選択（番号指定）＞" selected_index
+
+if [[ $selected_index -lt 1 ]] || [[ $selected_index -gt ${#matching_files[@]} ]]; then
+  echo "無効な番号が入力されました. スクリプトを実行し直してください"
+  exit 1
+fi
+
+selected_file="${matching_files[$((selected_index-1))]}"
+sed -i 's/^/# /' "$selected_file"
+```
 # ⌨️ (03:24) Basic commands
 - vim
   - 変更を無視してquitしたい場合
@@ -156,4 +229,22 @@ since
 + since
 ```
 # ⌨️ (42:30) AWK
+- テキスト処理ツール
+- ex.)
+  - `echo one two three > testfile.txt`
+  - `awk '{print $1}' testfile.txt`
+    - `'{print $1}'`
+      - awkアクション．各行の1番目のフィールド（デフォルトではスペースやタブで区切られた単語）を出力する
+  - `one`を出力する
+- ex.)
+  - `echo one,two,three > csvtest.csv`
+  - `awk -F, '{print $1}' csvtest.csv`
+    - フィールドセパレータが`,`に変更される
+  - `one`を出力する
+- ex.)
+  - `echo "Just get this word: Hello" | awk '{print $5}'`
+  - `Hello`が出力される
+- ex.)
+  - `echo "Just get this word: Hello" | awk -F: '{print $2}'`
+  - `Hello`が出力される
 # ⌨️ (45:11) SED
